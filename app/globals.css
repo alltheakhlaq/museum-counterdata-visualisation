@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 @import "tailwindcss";
 
+
 :root {
-  --background: #ffffff;
+  --background: #b1a9c7;
   --foreground: #171717;
 }
 
@@ -12,15 +14,34 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Source Code Pro", monospace;
+  margin: 100px;
+}
+
+.box {
+  background-color: #f5f7dc;
+  border: 2px solid black;
+  border-radius: 3px;
+  padding: 5px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 30px;
+}
+
+p {
+  font-size: 20px;
 }
