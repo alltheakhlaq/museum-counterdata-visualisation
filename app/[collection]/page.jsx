@@ -7,10 +7,13 @@ export default async function CollectionPage({ params }) {
   // const location = kb.labelMatching(collection, CIC('location'));
 
   return (
-    <div>
-      <h1>Collection page for {collection}</h1>
+    <div >
       <div>
-        Here's some links:
+              <div className="box h-100">
+<p>Counterdata visualisation of</p>
+      <h1>Objects from {collection} collection</h1>
+            <p className="mt-5 overflow-scroll">View counterdata visualisation of objects from the collection of Sir Hans Sloane</p>
+            </div>
         <ul>
           <li>
             <a href={`${collection}/object-1`}>Object 1</a>

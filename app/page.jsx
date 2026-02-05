@@ -30,9 +30,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row h-full">
+      <div className="flex flex-row h-full gap-10">
           <div className="flex justify-center box w-1/2">
-            <a href="/sloane">
+            <a href="/Sloane">
             <h2>
             Sloane collection
             </h2>
@@ -40,7 +40,7 @@ export default function Home() {
             </a>
           </div>
           <div className="flex justify-center box w-1/2">
-            <a href="/clive">
+            <a href="/Clive">
             <h2>
             Clive collection
             </h2>

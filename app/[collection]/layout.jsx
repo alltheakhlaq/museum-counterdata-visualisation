@@ -5,7 +5,6 @@
 export default function CollectionLayout({ children }) {
   return (
     <div>
-      Collection layout
       <div>{children}</div>
     </div>
   );
