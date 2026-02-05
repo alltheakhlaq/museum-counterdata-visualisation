@@ -1,6 +1,21 @@
+const pageContents = {
+  Sloane: {
+    infoBox1: <div>sloane was very ugly</div>,
+  },
+  Clive: {
+    infoBox1: "clive was veeeeery ugly",
+  },
+};
+
+export async function generateStaticParams() {
+  return [{ collection: "Sloane" }, { collection: "Clive" }];
+}
+
 export default async function CollectionPage({ params }) {
   // Get whatever [collection] is from the URL
   const { collection } = await params;
+
+  const { infoBox1 } = pageContents[collection];
 
   // Here's where you'd query the DB for information about the collection.
   // Made up example query:
@@ -33,6 +48,7 @@ export default async function CollectionPage({ params }) {
                 How did Sloane's collection practise benefit from{" "}
                 <b>Transatlantic trade of enslaved people?</b>
               </p>
+              {infoBox1}
             </a>
           </div>
           <div className="flex-2 pbox">

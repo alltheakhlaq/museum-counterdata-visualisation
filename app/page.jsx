@@ -31,23 +31,25 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-row h-full gap-10">
-          <div className="flex justify-center box w-1/2">
-            <a href="/Sloane">
-            <h2>
-            Sloane collection
-            </h2>
-            <p>View counterdata visualisation of objects from the collection of Sir Hans Sloane</p>
-            </a>
-          </div>
-          <div className="flex justify-center box w-1/2">
-            <a href="/Clive">
-            <h2>
-            Clive collection
-            </h2>
-            <p>View counterdata visualisation of objects from the collection of the Clive Family</p>
-            </a>
-          </div>
-          {/* <li className="box">
+        <div className="flex justify-center box w-1/2">
+          <a href="/Sloane">
+            <h2>Sloane collection</h2>
+            <p>
+              View counterdata visualisation of objects from the collection of
+              Sir Hans Sloane
+            </p>
+          </a>
+        </div>
+        <div className="flex justify-center box w-1/2">
+          <a href="/Clive">
+            <h2>Clive collection</h2>
+            <p>
+              View counterdata visualisation of objects from the collection of
+              the Clive Family
+            </p>
+          </a>
+        </div>
+        {/* <li className="box">
             <a href="/mystery">Mystery collection</a>
           </li> */}
       </div>
