@@ -7,13 +7,39 @@ export default async function CollectionPage({ params }) {
   // const location = kb.labelMatching(collection, CIC('location'));
 
   return (
-    <div >
+    <div>
       <div>
-              <div className="box h-100">
-<p>Counterdata visualisation of</p>
-      <h1>Objects from {collection} collection</h1>
-            <p className="mt-5 overflow-scroll">View counterdata visualisation of objects from the collection of Sir Hans Sloane</p>
-            </div>
+        <div className="box h-100">
+          <p>Counterdata visualisation of</p>
+          <h1>Objects from {collection} collection</h1>
+          <p className="mt-5 overflow-scroll">
+            View counterdata visualisation of objects from the collection of Sir
+            Hans Sloane
+          </p>
+          <a href="/">
+            <p className="link">
+              Click here to read biographical history of Hans Sloane
+            </p>
+          </a>
+        </div>
+
+        <div className="flex flex-col h-full">
+          <div className="flex pbox">
+            <a href="/">
+              <p>
+                How did Hans Sloane benefit from Transatlantic trade of enslaved
+                people?
+              </p>
+            </a>
+          </div>
+          <div className="flex pbox">
+            <a href="">
+              <p>
+                How did Hans Sloane benefit from British colonial expansion?
+              </p>
+            </a>
+          </div>
+        </div>
         <ul>
           <li>
             <a href={`${collection}/object-1`}>Object 1</a>
