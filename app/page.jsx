@@ -17,31 +17,39 @@ export default function Home() {
         </p>
         <div className="flex justify-evenly mt-6 mb-6">
           <div>
-            <div className="rounded-full bg-[#2eb5a5] size-10 m-auto"></div>
+            <div className="rounded-full border border-black-20 bg-[#2eb5a5] size-10 m-auto"></div>
             <p>Data Interventions</p>
           </div>
           <div>
-            <div className="rounded-full bg-[#ffcf56] size-10 m-auto"></div>
+            <div className="rounded-full border border-black-20 bg-[#ffcf56] size-10 m-auto"></div>
             <p>Power Dimensions</p>
           </div>
           <div>
-            <div className="rounded-full bg-[#d36c83] size-10 m-auto"></div>
+            <div className="rounded-full border border-black-20 bg-[#d36c83] size-10 m-auto"></div>
             <p>Access Information</p>
           </div>
         </div>
       </div>
-      <div>
-        <ul>
-          <li className="box ">
-            <a href="/sloane">Sloane collection</a>
-          </li>
-          <li className="box">
-            <a href="/clive">Clive collection</a>
-          </li>
+      <div className="flex flex-row h-full">
+          <div className="flex justify-center box w-1/2">
+            <a href="/sloane">
+            <h2>
+            Sloane collection
+            </h2>
+            <p>View counterdata visualisation of objects from the collection of Sir Hans Sloane</p>
+            </a>
+          </div>
+          <div className="flex justify-center box w-1/2">
+            <a href="/clive">
+            <h2>
+            Clive collection
+            </h2>
+            <p>View counterdata visualisation of objects from the collection of the Clive Family</p>
+            </a>
+          </div>
           {/* <li className="box">
             <a href="/mystery">Mystery collection</a>
           </li> */}
-        </ul>
       </div>
     </div>
   );

@@ -29,17 +29,21 @@ body {
 }
 
 .box {
-  background-color: #f5f7dc;
+  background-color: #FFFFE0;
   border: 2px solid black;
-  border-radius: 3px;
-  padding: 5px;
-  margin-top: 6px;
-  margin-bottom: 6px;
+  border-radius: 15px;
+  padding: 15px;
+  margin: 14px;
 }
 
 h1 {
   font-weight: 900;
-  font-size: 30px;
+  font-size: 40px;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 30px;
 }
 
 p {
