@@ -108,9 +108,12 @@ export default async function ObjectPage({ params }) {
           </section>
           <section className="cabox">
             <div id="label3">
-              <h2>Accessibility Information</h2>
+              <h2>Access Information</h2>
             </div>
-            <div>counterdata contents 3</div>
+            <div>
+              Data fields with access information of the physical and digital
+              object
+            </div>
           </section>
         </div>
       </div>
