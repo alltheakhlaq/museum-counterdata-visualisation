@@ -1,0 +1,529 @@
+const ttlBody = `
+
+@prefix crm: <https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#> .
+@prefix counterdata: <http://example.org/counterdata#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+##................ Classes ................ ##
+
+# <Entity> a crm:E1_CRM-Entity .
+<Entity> a counterdata:Entity .
+
+<Item> a counterdata:Item ;
+# <Item> a crm:E70_Thing ;
+	rdfs:subClassOf counterdata:Entity ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+	<ColObject> a counterdata:CollectionObject ;
+		rdfs:subClassOf counterdata:Item ;
+		rdfs:label "" ;
+		rdfs:comment "" .
+
+	<ConceptItem> a counterdata:ConceptualItem ;
+			rdfs:subClassOf counterdata:Item ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<ConceptItem-Theroy> a counterdata:Theory ;
+			rdfs:subClassOf counterdata:ConceptualItem ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<ConceptItem-Method> a counterdata:Method ;
+			rdfs:subClassOf counterdata:ConceptualItem ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<ConceptItem-Design> a counterdata:Design ;
+			rdfs:subClassOf counterdata:ConceptualItem ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+	<InfoItem> a counterdata:InformationItem ;
+		rdfs:subClassOf counterdata:Item ;
+		rdfs:label "" ;
+		rdfs:comment "" .
+		
+		<InfoItem-VisItem> a counterdata:VisualItem ;
+			rdfs:subClassOf counterdata:InformationItem ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<InfoItem-Archive> a counterdata:Archive ;
+			rdfs:subClassOf counterdata:InformationItem ;
+			rdfs:label "" ;
+			rdfs:comment "" .			
+
+		<InfoItem-CompItem> a counterdata:ComputationalItem ;
+			rdfs:subClassOf counterdata:InformationItem ;
+			rdfs:label "" ;
+			rdfs:comment "" .	
+
+			<InfoItem-CompItem-Software> a counterdata:Software ;
+				rdfs:subClassOf counterdata:ComputationalItem ;
+				rdfs:label "" ;
+				rdfs:comment "" .
+
+			<InfoItem-CompItem-Dataset> a counterdata:Dataset ;
+				rdfs:subClassOf counterdata:ComputationalItem ;
+				rdfs:label "" ;
+				rdfs:comment "" .
+
+		<InfoItem-Pub> a counterdata:Publication ;
+			rdfs:subClassOf counterdata:InformationItem ;
+			rdfs:label "" ;
+			rdfs:comment "" .	
+
+			<InfoItem-Lit> a counterdata:LiteraryOrScholarlyWork ;
+				rdfs:subClassOf counterdata:Publication ;
+				rdfs:label "" ;
+				rdfs:comment "" .	
+
+			<InfoItem-Manus> a counterdata:HistoricalManuscript ;
+				rdfs:subClassOf counterdata:Publication ;
+				rdfs:label "" ;
+				rdfs:comment "" .	
+		
+<Actor> a counterdata:Actor ;
+# <Actor> a crm:E39_Actor ;
+	rdfs:subClassOf counterdata:Entity ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+	<Person> a counterdata:Person ;
+	rdfs:subClassOf counterdata:Actor ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+	<Collective> a counterdata:Collective ;
+	rdfs:subClassOf counterdata:Actor ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+	<Organisation> a counterdata:Organisation ;
+	rdfs:subClassOf counterdata:Actor ;
+	rdfs:label "" ;
+	rdfs:comment "" .	
+
+<Event> a counterdata:Event ;
+# a crm:E5_Event.
+	rdfs:subClassOf counterdata:Entity ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+	<Activity> a counterdata:Activity ;
+		rdfs:subClassOf counterdata:Event ;
+		rdfs:label "" ;
+		rdfs:comment "" .
+
+<Place> a counterdata:Place ;
+# a crm:E53_Place
+	rdfs:subClassOf counterdata:Entity ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+<Time> a counterdata:Time ;
+# a crm:E52_Time-Span
+	rdfs:subClassOf counterdata:Entity ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+<Material> a counterdata:Material ;
+# crm:E57_Material
+	rdfs:subClassOf counterdata:Entity ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+
+<Rights> a counterdata:Rights ;
+# a crm:E30_Rights
+	rdfs:subClassOf counterdata:Entity ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+	<Right-Usage> a counterdata:UsageRight ;
+		rdfs:subClassOf counterdata:Rights ;
+		rdfs:label "" ;
+		rdfs:comment "" .
+
+	<Right-Access> a counterdata:AccessRights ;
+		rdfs:subClassOf counterdata:Rights ;
+		rdfs:label "" ;
+		rdfs:comment "" .		
+
+<Power> a counterdata:Power ;
+	rdfs:subClassOf counterdata:Entity ;
+	rdfs:label "" ;
+	rdfs:comment "" .
+
+	<Power-Domination> a counterdata:Domination ;
+		rdfs:subClassOf counterdata:Power ;
+		rdfs:label "" ;
+		rdfs:comment "" .
+
+		<Power-Domination-SysDom> a counterdata:SystemicDomination ;
+			rdfs:subClassOf counterdata:Domination ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<Power-Domination-DisDom> a counterdata:DisciplinaryDomination ;
+			rdfs:subClassOf counterdata:Domination ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<Power-Domination-HegDom> a counterdata:HegemonicDomination ;
+			rdfs:subClassOf counterdata:Domination ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<Power-Domination-PerDom> a counterdata:InterpersonalDomination ;
+			rdfs:subClassOf counterdata:Domination ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+	<Power-Resistance> a counterdata:Resistance ;
+		rdfs:subClassOf counterdata:Power ;
+		rdfs:label "" ;
+		rdfs:comment "" .
+
+		<Power-Resistance-SysDom> a counterdata:SystemicResistance ;
+			rdfs:subClassOf counterdata:Resistance ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<Power-Resistance-DisDom> a counterdata:DisciplinaryResistance ;
+			rdfs:subClassOf counterdata:Resistance ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<Power-Resistance-HegDom> a counterdata:HegemonicResistance ;
+			rdfs:subClassOf counterdata:Resistance ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+		<Power-Resistance-PerDom> a counterdata:InterpersonalResistance ;
+			rdfs:subClassOf counterdata:Resistance ;
+			rdfs:label "" ;
+			rdfs:comment "" .
+
+##................ Properties ................ ##
+
+	<EngagedBy> a counterdata:EngagedBy ;
+		rdfs:label "" ;
+		rdfs:comment "" ;
+		rdfs:domain counterdata:Item ;
+		rdfs:range counterdata:Actor .
+
+			<CollectedBy> a counterdata:CollectedBy ;
+				rdfs:subPropertyOf counterdata:EngagedBy ;
+				rdfs:label "" ;
+				rdfs:comment "" ;
+				rdfs:domain counterdata:CollectionObject ;
+				rdfs:range counterdata:Actor .	
+
+			<HeldBy> a counterdata:HeldBy ;
+				rdfs:subPropertyOf counterdata:EngagedBy ;
+				rdfs:label "" ;
+				rdfs:comment "" ;
+				rdfs:domain counterdata:CollectionObject ;
+				rdfs:range counterdata:Organisation .	
+
+			<Visualise> a counterdata:Visualise ;
+				rdfs:subPropertyOf counterdata:EngagedBy ;
+				rdfs:label "" ;
+				rdfs:comment "" ;
+				rdfs:domain counterdata:Item ;
+				rdfs:range counterdata:Actor .	
+			
+	<Indicates> a counterdata:Indicates;
+		rdfs:label "" ;
+		rdfs:comment "" ;
+		rdfs:domain counterdata:Item ;
+		rdfs:domain counterdata:Activity ;
+		rdfs:range counterdata:Power .
+
+				<Represents> a counterdata:Represents ;
+					rdfs:subPropertyOf counterdata:Indicates ;
+					rdfs:label "" ;
+					rdfs:comment "" ;
+					rdfs:domain counterdata:Item ;
+					rdfs:domain counterdata:Activity ;
+					rdfs:range counterdata:Power .	
+
+				<Influences> a counterdata:Influences ;
+					rdfs:subPropertyOf counterdata:Indicates ;
+					rdfs:label "" ;
+					rdfs:comment "" ;
+					rdfs:domain counterdata:Item ;
+					rdfs:domain counterdata:Activity ;
+					rdfs:range counterdata:Power .	
+
+				<IsInfluencedBy> a counterdata:IsInfluencedBy ;
+					rdfs:subPropertyOf counterdata:Indicates ;
+					rdfs:label "" ;
+					rdfs:comment "" ;
+					rdfs:domain counterdata:Item ;
+					rdfs:domain counterdata:Activity ;
+					rdfs:range counterdata:Power .	
+			
+	<Holds> a counterdata:Holds;
+		rdfs:label "" ;
+		rdfs:comment "" ;
+		rdfs:domain counterdata:Item ;
+		rdfs:range counterdata:Right . 
+
+	<OccuredOn> a counterdata:OccuredOn;
+		rdfs:label "" ;
+		rdfs:comment "" ;
+		rdfs:domain counterdata:Item ;
+		rdfs:range counterdata:Time . 
+	
+		<CreatedOn> a counterdata:CreatedOn ;
+			rdfs:subPropertyOf counterdata:OccuredOn ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Item ;
+			rdfs:range counterdata:Time .	
+
+		<CollectedOn> a counterdata:CollectedOn ;
+			rdfs:subPropertyOf counterdata:OccuredOn ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Item ;
+			rdfs:range counterdata:Time .	
+
+	<OccuredAt> a counterdata:OccuredAt;
+		rdfs:label "" ;
+		rdfs:comment "" ;
+		rdfs:domain counterdata:Item ;
+		rdfs:range counterdata:Place . 
+	
+		<CreatedAt> a counterdata:CreatedAt ;
+			rdfs:subPropertyOf counterdata:OccuredAt ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Item ;
+			rdfs:range counterdata:Place .	
+
+		<CollectedAt> a counterdata:CollectedAt ;
+			rdfs:subPropertyOf counterdata:OccuredAt ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Item ;
+			rdfs:range counterdata:Place .	
+
+	<Utilised> a counterdata:Utilised;
+		rdfs:label "" ;
+		rdfs:comment "" ;
+		rdfs:domain counterdata:Actor ;
+		rdfs:range counterdata:ConceptualItem .
+
+	<ParticipatedIn> a counterdata:ParticipatedIn;
+		rdfs:label "" ;
+		rdfs:comment "" ;
+		rdfs:domain counterdata:Actor ;
+		rdfs:range counterdata:Power .
+
+	<hasMaterial> a counterdata:hasMaterial;
+		rdfs:label "" ;
+		rdfs:comment "" ;
+		rdfs:domain counterdata:Actor ;
+		rdfs:range counterdata:Material .	
+
+		<HasMaterialType> a counterdata:HasMaterialType ;
+			rdfs:subPropertyOf counterdata:hasMaterial ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Item ;
+			rdfs:range counterdata:Material .	
+
+		<HasMaterialCondition> a counterdata:HasMaterialCondition ;
+			rdfs:subPropertyOf counterdata:hasMaterial ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Item ;
+			rdfs:range counterdata:Material .	
+
+	<RelatedTo> a counterdata:RelatedTo;
+		rdfs:label "" ;
+		rdfs:comment "" ;		
+		rdfs:domain counterdata:Actor ;
+		rdfs:domain counterdata:Item ;		
+		rdfs:range counterdata:Actor ;	
+		rdfs:range counterdata:Item .	
+
+		<IsSimilarTo> a counterdata:IsSimilarTo ;
+			rdfs:subPropertyOf counterdata:RelatedTo ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Item ;
+			rdfs:range counterdata:Item .	
+
+		<Represents> a counterdata:Represents ;
+			rdfs:subPropertyOf counterdata:RelatedTo ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Item ;
+			rdfs:range counterdata:Item .	
+
+		<InteractedWith> a counterdata:InteractedWith ;
+			rdfs:subPropertyOf counterdata:RelatedTo ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Actor ;
+			rdfs:range counterdata:Actor .
+
+		<EmployedAt> a counterdata:EmployedAt ;
+			rdfs:subPropertyOf counterdata:RelatedTo ;
+			rdfs:label "" ;
+			rdfs:comment "" ;
+			rdfs:domain counterdata:Actor ;
+			rdfs:range counterdata:Actor .
+
+			<MemberOf> a counterdata:MemberOf ;
+				rdfs:subPropertyOf counterdata:MemberOf ;
+				rdfs:label "" ;
+				rdfs:comment "" ;
+				rdfs:domain counterdata:Actor ;
+				rdfs:range counterdata:Actor .		
+
+##................ Data Model ................ ##
+
+## Data Intervention
+
+<ColObject-BirdsEntry724> a counterdata:CollectionObject ;
+	counterdata:HasAttribute <HasAttribute-BirdsEntry724> ;
+	counterdata:HasMaterialType <HasMaterialType-BirdsEntry724> ;
+	counterdata:HasMaterialCondition <HasMaterialCondition-BirdsEntry724> ;
+	counterdata:CollectedAt <CollectedAt-BirdsEntry724> ;
+	counterdata:CollectedOn <CollectedOn-BirdsEntry724> ;
+	counterdata:RelatedTo <RelatedTo-BirdsEntry724> ;
+	counterdata:Represents <Represents-BirdsEntry724> ;
+	counterdata:HeldBy <HeldBy-BirdsEntry724> ;
+	counterdata:Indicates <Indicates-BirdsEntry724> .
+
+<HasAttribute-BirdsEntry724> a crm:E35Title ;
+	rdfs:label "Birds Entry 724: Feathers made up to fright the slaves. Wald. Barb. p" .
+
+<HasMaterialType-BirdsEntry724> a counterdata:Material ;
+	rdfs:label "Natural material, Manuscript entry" .
+
+<HasMaterialCondition-BirdsEntry724> a counterdata:Material ;
+	rdfs:label "The manuscripts have survived and are currently stored at the British Library. However, there is no institutional evidence of physical presence of the object collected by Sloane." .
+
+<CollectedAt-BirdsEntry724> a counterdata:Place ;
+	rdfs:label "Jamaica" .
+
+<RelatedTo-BirdsEntry724> a counterdata:Actor ;
+rdfs:label "Captain Thomas Walduck" .
+
+<Represents-BirdsEntry724> a counterdata:ConceptualItem ;
+rdfs:label "*Thesis excerpt on religious and spiritual significance of Obeah practices for the enslaved people in Jamaica and in the Caribbean overall*" .
+
+<HeldBy-BirdsEntry724> a counterdata:Organisation ;
+rdfs:label "British Library" .
+
+<Indicates-BirdsEntry724> a counterdata:Power ;
+rdfs:label "Material culture of resistance, Tools of defiance, Spiritual practices, Obeah, Indigenous knowledge systems" .
+
+<Actor-BirdsEntry724> a counterdata:Actor ;
+	counterdata:Utilises <Utilises-BirdsEntry724> .
+
+<Utilises-BirdsEntry724> a counterdata:ConceptualItem ;
+rdfs:label "Sent to Sir Hans Sloane by Captain Walduck from Barbados. Captain Walduck was a British seaman who was stationed in the 'West Indies' for 15 years during which he amassed natural and cultural material" .
+
+<Item-BirdsEntry724> a counterdata:Item ;
+	counterdata:IsSimilarTo <IsSimilarTo-BirdsEntry724> .
+
+<IsSimilarTo-BirdsEntry724> a counterdata:Item ;
+rdfs:label "Similar Items" .
+
+
+
+
+
+
+<http://example.com/event/6817497d> a crm:E22_Human-made_Object ;
+	rdfs:label "" ;
+	rdfs:subClassOf counterdata:Item ;
+	crm:P4_has_time-span <http://example.com/time/5c5f16fc>	 ;
+	crm:P12_occurred_in_the_presence_of <http://example.com/person/95cee8a7> , <http://example.com/object/23b1ddb2> ;
+	crm:P7_took_place_at <http://example.com/place/96ce9dee> .
+
+# IRIs have to be distinct
+
+<http://example.com/object/23b1ddb2> a crm:E22_Human-made_Object ;
+	rdfs:label "LaocoÃ¶n Group" ;
+	crm:P2_has_type <http://example.com/type/copy/a7b49f6a> .
+
+<http://example.com/type/copy/a7b49f6a> a crm:E55_Type ;
+	rdfs:label "Copy" .
+
+<http://example.com/person/95cee8a7> a crm:E21_Person ;
+	rdfs:label "Johann-Joachim Winkelmann" .
+	
+<http://example.com/time/5c5f16fc> a crm:E52_Time-span ;
+	rdfs:label "1755" .
+
+<http://example.com/place/96ce9dee> a crm:E53_Place ;
+	rdfs:label "Vatican, Rome" .
+
+<http://example.com/event/creation/da3548b4> a crm:E65_Creation ;
+	rdfs:label "Winkelmann writes history of the Art of Antiquity" ;
+	crm:P14_carried_out_by <http://example.com/person/95cee8a7> ;
+	crm:P94_has_created <http://example.com/information/2316e0b4> ;
+	crm:P4_has_time-span <http://example.com/time/d55085b0>	 .
+	
+<http://example.com/time/d55085b0> a crm:E52_Time-span ;
+	rdfs:label "1764" .
+
+<http://example.com/information/2316e0b4> a crm:E73_Information_Object ;
+		rdfs:label "History of the Art of Antiquity" ;
+	crm:P67_refers_to <http://example.com/object/23b1ddb2> .
+
+<http://example.com/event/production/29b60f4d> a crm:E12_Production ;
+	rdfs:label "Roman commision copy of the LaocoÃ¶n Group" ;
+	crm:P108_has_produced <http://example.com/object/23b1ddb2> ;
+	crm:P12_occurred_in_the_presence_of <http://example.com/object/1da07e92> .
+
+<http://example.com/object/1da07e92> a crm:E22_Human-made_Object ;
+	rdfs:label "LaocoÃ¶n Group" ;
+	crm:P2_has_type <http://example.com/type/hellenistic/93745ddf> .
+
+<http://example.com/type/hellenistic/93745ddf> a crm:E55_Type ;
+	rdfs:label "Hellenistic" .
+
+<http://example.com/event/birth/46e90bf4> a crm:E67_Birth ;
+	rdfs:label "Winkelmann's birth" ;
+	crm:P98_brought_into_life <http://example.com/person/95cee8a7> ;
+	crm:P96_by_mother <http://example.com/person/639e49e8> ;
+	crm:P7_took_place_at <http://example.com/place/b1a8dd6b> ;
+	crm:P4_has_time-span <http://example.com/time/572e3de3> .
+
+<http://example.com/time/572e3de3> a crm:E52_Time-span ;
+	rdfs:label "1717" .
+
+<http://example.com/person/639e49e8> a crm:E21_Person ;
+	rdfs:label "Anna-Maria Meyer" .
+
+<http://example.com/place/b1a8dd6b> a crm:E53_Place ;
+	rdfs:label "Stendal" .
+
+<http://example.com/event/death/07f84a6f> a crm:E69_Death ;
+	rdfs:label "Winkelmann's death" ;
+	crm:P100_was_death_of <http://example.com/person/95cee8a7> ;
+	crm:P7_took_place_at <http://example.com/place/a6b28b49> ;
+	crm:P4_has_time-span <http://example.com/time/e949ad84> .
+
+ <http://example.com/place/a6b28b49> a crm:E53_Place ;
+ 	rdfs:label "Trieste" .
+
+ <http://example.com/time/e949ad84> a crm:E52_Time-span ;
+ 	rdfs:label "1768" .
+
+`;
+
+export default ttlBody;

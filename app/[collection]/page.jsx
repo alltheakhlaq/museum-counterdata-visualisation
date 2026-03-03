@@ -1,13 +1,20 @@
+"use client";
+
+import Link from "next/link";
+import * as $rdf from "rdflib";
+import { useState, useEffect } from "react";
+import useRdfStore, { CRM, COUNTERDATA, RDF, RDFS, XSD } from "../useRdfStore";
+
 const pageContents = {
   Sloane: {
     infoBox: (
       <div>
         <div className="mt-5 overflow-scroll">
-          <a href="/">
+          <Link href="/">
             <p className="link">
               Click here to read biographical history of Hans Sloane
             </p>
-          </a>
+          </Link>
         </div>
         <div className="flex flex-row gap-5 h-full">
           <div className="flex-1 mt-6 mb-6">
@@ -16,17 +23,17 @@ const pageContents = {
             </div>
           </div>
           <div className="flex-2 pbox">
-            <a href="/">
+            <Link href="/">
               <p>
-                How did Sloane's collection practise benefit from{" "}
+                How did Sloane&apos;s collection practise benefit from{" "}
                 <b>Transatlantic trade of enslaved people?</b>
               </p>
-            </a>
+            </Link>
           </div>
           <div className="flex-2 pbox">
             <a href="">
               <p>
-                How did Sloane's collection practise benefit from{" "}
+                How did Sloane&apos;s collection practise benefit from{" "}
                 <b>British colonial expansion?</b>
               </p>
             </a>
@@ -41,19 +48,28 @@ const pageContents = {
   },
 };
 
-export async function generateStaticParams() {
-  return [{ collection: "Sloane" }, { collection: "Clive" }];
-}
-
-export default async function CollectionPage({ params }) {
+export default function CollectionPage({ params }) {
   // Get whatever [collection] is from the URL
-  const { collection } = await params;
+  const [syncParams, setSyncParams] = useState(null);
+  params.then(setSyncParams).catch(console.error);
 
+  const { loading, error, store } = useRdfStore();
+
+  useEffect(() => {
+    if (!store) {
+      return;
+    }
+    console.log(
+      store.any(undefined, undefined, COUNTERDATA("CollectionObject")),
+    );
+  }, [store]);
+
+  if (!syncParams || loading || error) {
+    return <div>Loading or error</div>;
+  }
+
+  const { collection } = syncParams;
   const { infoBox } = pageContents[collection];
-
-  // Here's where you'd query the DB for information about the collection.
-  // Made up example query:
-  // const location = kb.labelMatching(collection, CIC('location'));
 
   return (
     <div>
@@ -68,8 +84,8 @@ export default async function CollectionPage({ params }) {
           <span className="block max-h-15 w-full overflow-hidden bg-[#ffffe0] rounded-2xl border border-black border-2 p-3 duration-300 peer-checked/showLabel:max-h-1000">
             <div className="flex flex-row gap-10 justify-center">
               <p className="flex cursor-pointer items-center">
-                Explore object in Sloane's collection and their encompassing
-                power dimensions{" "}
+                Explore object in Sloane&apos;s collection and their
+                encompassing power dimensions{" "}
               </p>
               <div
                 className="flex mt-2 w-0 h-0 {
