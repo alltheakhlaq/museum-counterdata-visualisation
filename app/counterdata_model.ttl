@@ -444,7 +444,7 @@ rdfs:label "Similar Items" .
 
 
 
-<http://example.com/event/6817497d> a counterdata:CollectionObject ;
+<http://example.com/event/6817497d> a crm:E22_Human-made_Object ;
 	rdfs:label "" ;
 	rdfs:subClassOf counterdata:Item ;
 	crm:P4_has_time-span <http://example.com/time/5c5f16fc>	 ;
