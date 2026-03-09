@@ -1,9 +1,6 @@
-"use client";
-
 import Link from "next/link";
-import * as $rdf from "rdflib";
-import { useState, useEffect } from "react";
-import useRdfStore, { CRM, COUNTERDATA, RDF, RDFS, XSD } from "../useRdfStore";
+import { getRdfStore, CRM, COUNTERDATA, RDF, RDFS, XSD } from "../getRdfStore";
+import { getUriFragment } from "../getUriFragment";
 
 const pageContents = {
   Sloane: {
@@ -48,27 +45,21 @@ const pageContents = {
   },
 };
 
-export default function CollectionPage({ params }) {
+export const generateStaticParams = async function () {
+  return [{ collection: "Sloane" }, { collection: "Clive" }];
+};
+
+export default async function CollectionPage({ params }) {
   // Get whatever [collection] is from the URL
-  const [syncParams, setSyncParams] = useState(null);
-  params.then(setSyncParams).catch(console.error);
+  const { collection } = await params;
+  const store = getRdfStore();
 
-  const { loading, error, store } = useRdfStore();
+  const collectionObjects = store.each(
+    null,
+    RDF("type"),
+    COUNTERDATA("CollectionObject"),
+  );
 
-  useEffect(() => {
-    if (!store) {
-      return;
-    }
-    console.log(
-      store.any(undefined, undefined, COUNTERDATA("CollectionObject")),
-    );
-  }, [store]);
-
-  if (!syncParams || loading || error) {
-    return <div>Loading or error</div>;
-  }
-
-  const { collection } = syncParams;
   const { infoBox } = pageContents[collection];
 
   return (
@@ -95,58 +86,23 @@ export default function CollectionPage({ params }) {
               ></div>
             </div>
             <div className="grid grid-cols-2 w-full mt-10 gap-5">
-              <div>
-                <a href={`${collection}/object-1`}>Object 1</a>
-              </div>
-              <div>
-                <a href={`${collection}/2`}>Object 2</a>
-              </div>
-              <div>
-                <a href={`${collection}/third`}>Object 3</a>
-              </div>
-              <div>
-                <a href={`${collection}/third`}>Object 4</a>
-              </div>
-              <div>
-                <a href={`${collection}/third`}>Object 5</a>
-              </div>
-              <div>
-                <a href={`${collection}/third`}>Object 6</a>
-              </div>
-              <div>
-                <a href={`${collection}/third`}>Object 7</a>
-              </div>
-              <div>
-                <a href={`${collection}/third`}>Object 8</a>
-              </div>
-              <div>
-                <a href={`${collection}/third`}>Object 9</a>
-              </div>
-              <div>
-                <a href={`${collection}/third`}>Object 10</a>
-              </div>
+              {collectionObjects.map((collectionObject) => {
+                const hasAttributeNode = store.any(
+                  collectionObject,
+                  COUNTERDATA("HasAttribute"),
+                  null,
+                );
+                const label = store.any(hasAttributeNode, RDFS("label"), null);
+                const fragment = getUriFragment(collectionObject.value);
+                return (
+                  <Link key={fragment} href={`/${collection}/${fragment}`}>
+                    {label.value}
+                  </Link>
+                );
+              })}
             </div>
           </span>
         </label>
-        {/* <div className="box">
-          <p>
-            Explore object in Sloane's collection and their encompassing power
-            dimensions
-          </p>
-          <div className="grid">
-            <ul>
-              <li>
-                <a href={`${collection}/object-1`}>Object 1</a>
-              </li>
-              <li>
-                <a href={`${collection}/2`}>Object 2</a>
-              </li>
-              <li>
-                <a href={`${collection}/third`}>Object 3</a>
-              </li>
-            </ul>
-          </div>
-        </div> */}
       </div>
     </div>
   );

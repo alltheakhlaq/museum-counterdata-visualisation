@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 /**
  * Routes work how the directories are formatted.
  */
@@ -7,13 +9,13 @@ export default function Home() {
       <div className="">
         <h1>Counterdata Visualisation</h1>
         <p className="mt-3">
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat. Duis aute irure dolor in
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.",
+          culpa qui officia deserunt mollit anim id est laborum.
         </p>
         <div className="flex justify-evenly mt-6 mb-6">
           <div>
@@ -32,22 +34,22 @@ export default function Home() {
       </div>
       <div className="flex flex-row h-full gap-10">
         <div className="flex justify-center box w-1/2">
-          <a href="/Sloane">
+          <Link href="/Sloane">
             <h2>Sloane collection</h2>
             <p>
               View counterdata visualisation of objects from the collection of
               Sir Hans Sloane
             </p>
-          </a>
+          </Link>
         </div>
         <div className="flex justify-center box w-1/2">
-          <a href="/Clive">
+          <Link href="/Clive">
             <h2>Clive collection</h2>
             <p>
               View counterdata visualisation of objects from the collection of
               the Clive Family
             </p>
-          </a>
+          </Link>
         </div>
         {/* <li className="box">
             <a href="/mystery">Mystery collection</a>

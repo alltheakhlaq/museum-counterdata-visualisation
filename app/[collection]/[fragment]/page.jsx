@@ -1,29 +1,58 @@
-const placeholders = ["object-1", "2", "third"];
-
-const objectIds = {
-  Sloane: [...placeholders],
-  Clive: [...placeholders],
-};
+import { getLabelForNodeAndPredicate } from "../../getLabelForNodeAndPredicate";
+import {
+  getRdfStore,
+  CRM,
+  COUNTERDATA,
+  RDF,
+  RDFS,
+  XSD,
+} from "../../getRdfStore";
+import { getUriFragment } from "../../getUriFragment";
 
 export async function generateStaticParams() {
-  const sloaneParams = objectIds.Sloane.map((id) => ({
+  const store = getRdfStore();
+  const collectionObjects = store.each(
+    null,
+    RDF("type"),
+    COUNTERDATA("CollectionObject"),
+  );
+  const fragments = collectionObjects.map((collectionObject) => {
+    return getUriFragment(collectionObject.value);
+  });
+
+  const sloaneParams = fragments.map((fragment) => ({
     collection: "Sloane",
-    object: id,
+    fragment,
   }));
-  const cliveParams = objectIds.Clive.map((id) => ({
+  const cliveParams = fragments.map((fragment) => ({
     collection: "Clive",
-    object: id,
+    fragment,
   }));
   return sloaneParams.concat(cliveParams);
 }
 
 export default async function ObjectPage({ params }) {
-  // Get whatever [collection] and [object] is from the URL
-  const { collection, object } = await params;
+  // Get whatever [collection] and [fragment] is from the URL
+  const { collection, fragment } = await params;
+  const store = getRdfStore();
 
-  // Here's where you'd query the DB for information about the collection object.
-  // Made up example query:
-  // const label = kb.labelMatching(collection, CIC('objectId'), object);
+  // fragment is the last bit of the URI eg. "ColObject-BirdsEntry724"
+  const objectNode = COUNTERDATA(fragment);
+
+  // this is the query that will be used for any piece of data
+  const hasAttributeNode = store.any(
+    objectNode,
+    COUNTERDATA("HasAttribute"),
+    null,
+  );
+  const label = store.any(hasAttributeNode, RDFS("label"), null);
+  // then use label.value in the code to show the label
+
+  // or instead...
+  const materialTypeLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("HasMaterialType"),
+  );
 
   return (
     <div>
@@ -32,7 +61,7 @@ export default async function ObjectPage({ params }) {
         <div>Back to collection</div>
       </div>
       <div className="box">
-        <h2>Object title:</h2>
+        <h2>Object title: {label.value}</h2>
         <p>Name of one of the objects from the Sloane Collection</p>
       </div>
       <div className="flex flex-row w-full gap-5">
@@ -55,7 +84,10 @@ export default async function ObjectPage({ params }) {
         <div className="flex-3 mr-8 max-h-[700px] overflow-y-scroll ">
           <section className="odibox">
             <div id="label1">
-              <h2>Data Interventions</h2>{" "}
+              <h2>Data Interventions</h2>
+              <div>
+                <p>Material type: {materialTypeLabel}</p>
+              </div>
             </div>
             {/* <dl>
               {Object.entries(collectionItems[objectIndex].dataFields).map(
