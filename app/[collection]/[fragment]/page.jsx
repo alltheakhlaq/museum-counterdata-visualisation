@@ -54,6 +54,21 @@ export default async function ObjectPage({ params }) {
     COUNTERDATA("HasMaterialType"),
   );
 
+  const materialConditionLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("HasMaterialCondition"),
+  );
+
+  const placeofCollectionLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("CollectedAt"),
+  );
+
+  const timeofCollectionLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("CollectedOn"),
+  );
+
   return (
     <div>
       {/* Object page for object "{object}" in {collection} collection */}
@@ -61,34 +76,54 @@ export default async function ObjectPage({ params }) {
         <div>Back to collection</div>
       </div>
       <div className="box">
-        <h2>Object title: {label.value}</h2>
-        <p>Name of one of the objects from the Sloane Collection</p>
+        <h2>{label.value}</h2>
+        {/* <p>Name of one of the objects from the Sloane Collection</p> */}
       </div>
+      <div></div>
       <div className="flex flex-row w-full gap-5">
-        <div className="flex-1">
+        <div className="flex-1 mt-5">
           <div className="square"></div>
         </div>
-        <div>
-          <div className="flex flex-col cursor-pointer gap-6">
+        <div className="flex-3 mr-8 max-h-[700px] overflow-y-scroll ">
+          <div className="flex items-stretch items-center flex-row cursor-pointer m-5">
             <div className="flex">
               <div className="rounded-full border border-black-20 bg-[#2eb5a5] size-10 m-auto"></div>
+              <p className="plabel ml-3">Data intenventions</p>
             </div>
             <div className="flex">
-              <div className=" rounded-full border border-black-20 bg-[#ffcf56] size-10 m-auto"></div>
+              <div className="rounded-full border border-black-20 bg-[#ffcf56] size-10 m-auto"></div>
+              <p className="ml-3">Power diffenrentails</p>
             </div>
             <div className="flex">
               <div className=" rounded-full border border-black-20 bg-[#d36c83] size-10 m-auto"></div>
+              <p className="ml-3">Current Access Information</p>
             </div>
           </div>
-        </div>
-        <div className="flex-3 mr-8 max-h-[700px] overflow-y-scroll ">
           <section className="odibox">
             <div id="label1">
               <h2>Data Interventions</h2>
-              <div>
-                <p>Material type: {materialTypeLabel}</p>
-              </div>
+              &nbsp;
+              <p>
+                <b>Object name:</b> {label.value}
+              </p>
+              &nbsp;
+              <p>
+                <b>Material type:</b> {materialTypeLabel}
+              </p>
+              &nbsp;
+              <p>
+                <b>Material Condition: </b> {materialConditionLabel}
+              </p>
+              &nbsp;
+              <p>
+                <b>Place of Collection: </b> {placeofCollectionLabel}
+              </p>
+              &nbsp;
+              <p>
+                <b>Time of Collection: </b> {timeofCollectionLabel}
+              </p>
             </div>
+
             {/* <dl>
               {Object.entries(collectionItems[objectIndex].dataFields).map(
                 ([fieldName, fieldInfo]) => {

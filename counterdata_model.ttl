@@ -31,6 +31,9 @@
 <CollectedAt-BirdsEntry724> a counterdata:Place ;
 	rdfs:label "Jamaica" .
 
+	<CollectedOn-BirdsEntry724> a counterdata:Time ;
+	rdfs:label "Unknown. Presumabely during Sloane's time in Jamaica" .
+
 <RelatedTo-BirdsEntry724> a counterdata:Actor ;
 rdfs:label "Captain Thomas Walduck" .
 
