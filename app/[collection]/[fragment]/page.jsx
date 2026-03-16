@@ -49,24 +49,64 @@ export default async function ObjectPage({ params }) {
   // then use label.value in the code to show the label
 
   // or instead...
+  // Material Type
   const materialTypeLabel = getLabelForNodeAndPredicate(
     objectNode,
     COUNTERDATA("HasMaterialType"),
   );
 
+  // Material Condition
   const materialConditionLabel = getLabelForNodeAndPredicate(
     objectNode,
     COUNTERDATA("HasMaterialCondition"),
   );
 
+  // Place
   const placeofCollectionLabel = getLabelForNodeAndPredicate(
     objectNode,
     COUNTERDATA("CollectedAt"),
   );
 
+  // Time
   const timeofCollectionLabel = getLabelForNodeAndPredicate(
     objectNode,
     COUNTERDATA("CollectedOn"),
+  );
+
+  // Associated people
+  const associatedPeopleLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("EngagedBy"),
+  );
+
+  //Cultural significance for the source community
+  const culturalSigLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("Represents"),
+  );
+
+  //Method of acquisition
+  const acquisitionMethodLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA(""),
+  );
+
+  //Current holding institution
+  const holdingInstLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("HeldBy"),
+  );
+
+  //Objects with similar power dimensions
+  const similarObjLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("IsSimilarTo"),
+  );
+
+  //tags
+  const keywordLabel = getLabelForNodeAndPredicate(
+    objectNode,
+    COUNTERDATA("Indicates"),
   );
 
   return (
@@ -81,22 +121,28 @@ export default async function ObjectPage({ params }) {
       </div>
       <div></div>
       <div className="flex flex-row w-full gap-5">
-        <div className="flex-1 mt-5">
+        <div className="flex-1 mt-3">
           <div className="square"></div>
         </div>
-        <div className="flex-3 mr-8 max-h-[700px] overflow-y-scroll ">
-          <div className="flex items-stretch items-center flex-row cursor-pointer m-5">
-            <div className="flex">
-              <div className="rounded-full border border-black-20 bg-[#2eb5a5] size-10 m-auto"></div>
-              <p className="plabel ml-3">Data intenventions</p>
+        <div className="flex-3 mr-8 max-h-[700px]">
+          <div className="flex items-stretch justify-center flex-row cursor-pointer m-3 gap-10">
+            <div className="flex flex-col gap-2">
+              <div className="rounded-full border border-black-20 bg-[#2eb5a5] size-8 m-auto"></div>
+              <div>
+                <p className="plabel ml-3">Data intenventions</p>
+              </div>
             </div>
-            <div className="flex">
-              <div className="rounded-full border border-black-20 bg-[#ffcf56] size-10 m-auto"></div>
-              <p className="ml-3">Power diffenrentails</p>
+            <div className="flex flex-col gap-2">
+              <div className="rounded-full border border-black-20 bg-[#ffcf56] size-8 m-auto"></div>
+              <div>
+                <p className="plabel ml-3">Power diffenrentails</p>
+              </div>
             </div>
-            <div className="flex">
-              <div className=" rounded-full border border-black-20 bg-[#d36c83] size-10 m-auto"></div>
-              <p className="ml-3">Current Access Information</p>
+            <div className="flex flex-col gap-2">
+              <div className="rounded-full border border-black-20 bg-[#d36c83] size-8 m-auto"></div>
+              <div>
+                <p className="plabel ml-3">Current Access Information</p>
+              </div>
             </div>
           </div>
           <section className="odibox">
@@ -112,15 +158,44 @@ export default async function ObjectPage({ params }) {
               </p>
               &nbsp;
               <p>
-                <b>Material Condition: </b> {materialConditionLabel}
+                <b>Material condition: </b> {materialConditionLabel}
               </p>
               &nbsp;
               <p>
-                <b>Place of Collection: </b> {placeofCollectionLabel}
+                <b>Place of collection: </b> {placeofCollectionLabel}
               </p>
               &nbsp;
               <p>
-                <b>Time of Collection: </b> {timeofCollectionLabel}
+                <b>Time of collection: </b> {timeofCollectionLabel}
+              </p>
+              &nbsp;
+              <p>
+                <b>Associated people: </b> {associatedPeopleLabel}
+              </p>
+              &nbsp;
+              <p>
+                <b>Method of acquisition: </b>
+                {}
+              </p>
+              &nbsp;
+              <p>
+                <b>Cultural significance for the source community: </b>
+                {culturalSigLabel}
+              </p>
+              &nbsp;
+              <p>
+                <b>Current holding institution: </b>
+                {holdingInstLabel}
+              </p>
+              &nbsp;
+              <p>
+                <b>Objects with similar power dimensions: </b>
+                {similarObjLabel}
+              </p>
+              &nbsp;
+              <p>
+                <b>Keywords: </b>
+                {keywordLabel}
               </p>
             </div>
 

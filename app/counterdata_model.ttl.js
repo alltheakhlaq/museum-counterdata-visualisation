@@ -16,9 +16,10 @@ const ttlBody = `
 	counterdata:HasMaterialCondition <HasMaterialCondition-BirdsEntry724> ;
 	counterdata:CollectedAt <CollectedAt-BirdsEntry724> ;
 	counterdata:CollectedOn <CollectedOn-BirdsEntry724> ;
-	counterdata:RelatedTo <RelatedTo-BirdsEntry724> ;
+	counterdata:EngagedBy <EngagedBy-BirdsEntry724> ;
 	counterdata:Represents <Represents-BirdsEntry724> ;
 	counterdata:HeldBy <HeldBy-BirdsEntry724> ;
+		counterdata:IsSimilarTo <IsSimilarTo-BirdsEntry724> ;
 	counterdata:Indicates <Indicates-BirdsEntry724> .
 
 <HasAttribute-BirdsEntry724> a crm:E35Title ;
@@ -34,9 +35,9 @@ const ttlBody = `
 	rdfs:label "Jamaica" .
 
 		<CollectedOn-BirdsEntry724> a counterdata:Time ;
-	rdfs:label "Unknown. Presumabely during Sloane's time in Jamaica" .
+	rdfs:label "Unknown. Presumabely during Sloane's time in Jamaica." .
 
-<RelatedTo-BirdsEntry724> a counterdata:Actor ;
+<EngagedBy-BirdsEntry724> a counterdata:Actor ;
 rdfs:label "Captain Thomas Walduck" .
 
 <Represents-BirdsEntry724> a counterdata:ConceptualItem ;
@@ -44,6 +45,9 @@ rdfs:label "*Thesis excerpt on religious and spiritual significance of Obeah pra
 
 <HeldBy-BirdsEntry724> a counterdata:Organisation ;
 rdfs:label "British Library" .
+
+<IsSimilarTo-BirdsEntry724> a counterdata:Item ;
+rdfs:label "*Similar collection objects across both collections*" .
 
 <Indicates-BirdsEntry724> a counterdata:Power ;
 rdfs:label "Material culture of resistance, Tools of defiance, Spiritual practices, Obeah, Indigenous knowledge systems" .
@@ -54,11 +58,9 @@ rdfs:label "Material culture of resistance, Tools of defiance, Spiritual practic
 <Utilises-BirdsEntry724> a counterdata:ConceptualItem ;
 rdfs:label "Sent to Sir Hans Sloane by Captain Walduck from Barbados. Captain Walduck was a British seaman who was stationed in the 'West Indies' for 15 years during which he amassed natural and cultural material" .
 
-<Item-BirdsEntry724> a counterdata:Item ;
-	counterdata:IsSimilarTo <IsSimilarTo-BirdsEntry724> .
 
-<IsSimilarTo-BirdsEntry724> a counterdata:Item ;
-rdfs:label "Similar Items" .
+
+
 
 
 
