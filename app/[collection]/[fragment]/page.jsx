@@ -45,6 +45,7 @@ export default async function ObjectPage({ params }) {
     COUNTERDATA("HasAttribute"),
     null,
   );
+
   const label = store.any(hasAttributeNode, RDFS("label"), null);
   // then use label.value in the code to show the label
 
@@ -86,9 +87,13 @@ export default async function ObjectPage({ params }) {
   );
 
   //Method of acquisition
+  const actor = store.any(objectNode, COUNTERDATA("EngagedBy"), null);
+
+  // console.log(store.each(actor, RDFS("label"), null));
+
   const acquisitionMethodLabel = getLabelForNodeAndPredicate(
-    objectNode,
-    COUNTERDATA(""),
+    actor,
+    COUNTERDATA("Utilises"),
   );
 
   //Current holding institution
@@ -108,6 +113,76 @@ export default async function ObjectPage({ params }) {
     objectNode,
     COUNTERDATA("Indicates"),
   );
+
+  // Power dimensions
+  const power = store.any(objectNode, COUNTERDATA("Indicates"), null);
+  console.log(store.any(power, RDFS("label"), null));
+
+  // getting subtype dom and res
+  const powerSubTypes = store.each(power, COUNTERDATA("HasType"), null);
+
+  // domination node
+  const domination = powerSubTypes.find((subType) =>
+    store.any(subType, null, COUNTERDATA("Domination")),
+  );
+  const dominationLabel = store.any(domination, RDFS("label"), null);
+
+  // resistance node
+  const resistance = powerSubTypes.find((subType) =>
+    store.any(subType, null, COUNTERDATA("Resistance")),
+  );
+  const resistanceLabel = store.any(resistance, RDFS("label"), null);
+
+  // Actor's resistance and domination
+  const ActorPower = getLabelForNodeAndPredicate(
+    actor,
+    COUNTERDATA("EngagesIn"),
+  );
+
+  //pull in actions types
+  const actionTypes = store.each(actor, COUNTERDATA("EngagesIn"), null);
+  console.log("actions", actionTypes);
+
+  //get the domination action
+  const domAction = actionTypes.find((action) =>
+    store.any(action, null, COUNTERDATA("Domination")),
+  );
+  const domActionLabel = store.any(domAction, RDFS("label"), null);
+
+  // get the resistance action
+  const resAction = actionTypes.find((action) =>
+    store.any(action, null, COUNTERDATA("Resistance")),
+  );
+  const resActionLabel = store.any(resAction, RDFS("label"), null);
+
+  // Get event
+  const event = store.any(objectNode, COUNTERDATA("IndicatesOccuringOf"), null);
+  // get event types
+  const eventTypes = store.each(event, COUNTERDATA("Indicates"), null);
+  console.log("Event Types", eventTypes);
+  // get domination event
+  const domEvent = eventTypes.find((event) =>
+    store.any(event, null, COUNTERDATA("Domination")),
+  );
+  const domEventLabel = store.any(domEvent, RDFS("label"), null);
+  // get resistance event
+  const resEvent = eventTypes.find((event) =>
+    store.any(event, null, COUNTERDATA("Resistance")),
+  );
+  const resEventLabel = store.any(resEvent, RDFS("label"), null);
+
+  // get event indicating domination
+
+  // const indicates = store.any(objectNode, COUNTERDATA("Indicates"), null);
+  // const power = store.match(indicates, null, COUNTERDATA("Power"));
+  // console.log(store.each(indicates, RDFS("label"), null));
+  // const keywordLabel = store.any(indicates, RDFS("label"), null).value;
+
+  // types of domination
+  // const domTypeLabel = getLabelForNodeAndPredicate(
+  //   objectNode,
+  //   COUNTERDATA("Indicates"),
+  // );
 
   return (
     <div>
@@ -175,7 +250,7 @@ export default async function ObjectPage({ params }) {
               &nbsp;
               <p>
                 <b>Method of acquisition: </b>
-                {}
+                {acquisitionMethodLabel}
               </p>
               &nbsp;
               <p>
@@ -198,48 +273,44 @@ export default async function ObjectPage({ params }) {
                 {keywordLabel}
               </p>
             </div>
-
-            {/* <dl>
-              {Object.entries(collectionItems[objectIndex].dataFields).map(
-                ([fieldName, fieldInfo]) => {
-                  const fieldValues = Array.isArray(fieldInfo)
-                    ? fieldInfo
-                    : [fieldInfo];
-                  return (
-                    <>
-                      <dt>
-                        <strong>{fieldName}</strong>
-                      </dt>
-                      {fieldValues.map(({ fieldValue, contextTag }) => (
-                        <dd
-                          className="mb-4"
-                          onClick={() => {
-                            const context = document.querySelector(
-                              `[data-context-tag="${contextTag}"]`,
-                            );
-                            context?.scrollIntoView({ behavior: "smooth" });
-                          }}
-                          style={contextTag ? { cursor: "pointer" } : undefined}
-                        >
-                          {fieldValue}
-                        </dd>
-                      ))}
-                    </>
-                  );
-                },
-              )}
-            </dl> */}
           </section>
           <section className="pdbox">
             <div id="label2">
-              <h2>Power Dimensions</h2>
-            </div>
-            <div className="font-bold">Historical Power Dimensions</div>
-            <div>
-              Forms of domination that could be inspected through the object:
+              <h2>Power Differentials</h2>
             </div>
             <div>
-              Forms of resistance that could be inspected through the object:
+              &nbsp;
+              <h4>Historical Power Dimensions</h4>
+              &nbsp;
+              <p>
+                <b>Forms of historical dominations indicated by object: </b>
+                {dominationLabel.value}
+              </p>
+              &nbsp;
+              <p>
+                <b>Actors involved in Domination: </b>
+                {domActionLabel.value}
+              </p>
+              &nbsp;
+              <p>
+                <b>Events indicating Domination: </b>
+                {domEventLabel.value}
+              </p>
+              &nbsp;
+              <p>
+                <b>Forms of historical resistance indicated by object: </b>
+                {resistanceLabel.value}
+              </p>
+              &nbsp;
+              <p>
+                <b>Actors involved in Resistance: </b>
+                {resActionLabel.value}
+              </p>
+              &nbsp;
+              <p>
+                <b>Events indicating Resistance: </b>
+                {resEventLabel.value}
+              </p>
             </div>
             <br />
             <div className="font-bold">Contemporary Power Dimensions</div>
