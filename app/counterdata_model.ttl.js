@@ -11,7 +11,9 @@ const ttlBody = `
 ## Data Intervention
 
 <ColObject-BirdsEntry724> a counterdata:CollectionObject ;
-	counterdata:HasAttribute <HasAttribute-BirdsEntry724> ;
+	counterdata:HasType <PhyColObj-BirdsEntry724>;
+	counterdata:HasType <DigiColObj-BirdsEntry724>;	
+	counterdata:HasAttribute <Title-BirdsEntry724> ;
 	counterdata:HasMaterialType <HasMaterialType-BirdsEntry724> ;
 	counterdata:HasMaterialCondition <HasMaterialCondition-BirdsEntry724> ;
 	counterdata:CollectedAt <CollectedAt-BirdsEntry724> ;
@@ -23,7 +25,8 @@ const ttlBody = `
 	counterdata:Indicates <Power-BirdsEntry724> ;
 	counterdata:IndicatesOccuringOf <Event-BirdsEntry724> .
 
-<HasAttribute-BirdsEntry724> a crm:E35Title ;
+
+<Title-BirdsEntry724> a crm:E35Title ;
 	rdfs:label "Birds Entry 724: Feathers made up to fright the slaves. Wald. Barb. p" .
 
 <HasMaterialType-BirdsEntry724> a counterdata:Material ;
@@ -92,6 +95,41 @@ rdfs:label "Religious practices for resistance, Instilling colonial anxiety in c
 rdfs:label "Obeah Uprising" .
 
 
+## Access Information
+
+<PhyColObj-BirdsEntry724> a counterdata:PhysicalCollectionObject;
+	counterdata:HeldBy <PhyInstitution-BirdsEntry724>;
+	counterdata:Holds <PhyAccessRights-BirdsEntry724>.
+
+<PhyInstitution-BirdsEntry724> a counterdata:Organisation;
+rdfs:label "British Library" .
+
+<PhyAccessRights-BirdsEntry724> a counterdata:AccessRights;
+rdfs:label "Manuscript can be made available upon request by filling an online form" .
+
+
+<DigiColObj-BirdsEntry724> a counterdata:DigitalCollectionObject;
+	counterdata:HeldBy <DigiInstitution-BirdsEntry724>;
+	counterdata:Holds <DigiAccessRights-BirdsEntry724>;
+	counterdata:Holds <DigiUsageRights-BirdsEntry724>.
+
+<DigiInstitution-BirdsEntry724> a counterdata:Organisation;
+rdfs:label "Sloane Lab Knowledge Base";
+rdfs:label "British Library Digital Archives";
+rdfs:label "Digitised Manuscripts";
+rdfs:label "Illuminated Manuscripts".
+
+
+<DigiAccessRights-BirdsEntry724> a counterdata:AccessRights;
+rdfs:label "Available as digitised manuscript" ;
+rdfs:label "Digitised object available via Library Research Repository, searchable through the identifier Sloane MS 3972 B. However, it is currently unavailable due to the British Library cyber attack in October 2023." ;
+rdfs:label "Platform is offline most probably because of the British Library cyber attack in October 2023";
+rdfs:label "Platform is offline most probably because of the British Library cyber attack in October 2023" .
+
+
+<DigiUsageRights-BirdsEntry724> a counterdata:UsageRights;
+rdfs:label "not clear from the platform";
+rdfs:label "CC Public Domain Mark 1.0".
 
 
 

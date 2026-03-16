@@ -1,4 +1,7 @@
-import { getLabelForNodeAndPredicate } from "../../getLabelForNodeAndPredicate";
+import {
+  getLabelForNodeAndPredicate,
+  getMultipleLabelsForNodeAndPredicate,
+} from "../../getLabelForNodeAndPredicate";
 import {
   getRdfStore,
   CRM,
@@ -157,32 +160,68 @@ export default async function ObjectPage({ params }) {
 
   // Get event
   const event = store.any(objectNode, COUNTERDATA("IndicatesOccuringOf"), null);
+
   // get event types
   const eventTypes = store.each(event, COUNTERDATA("Indicates"), null);
   console.log("Event Types", eventTypes);
+
   // get domination event
   const domEvent = eventTypes.find((event) =>
     store.any(event, null, COUNTERDATA("Domination")),
   );
   const domEventLabel = store.any(domEvent, RDFS("label"), null);
+
   // get resistance event
   const resEvent = eventTypes.find((event) =>
     store.any(event, null, COUNTERDATA("Resistance")),
   );
   const resEventLabel = store.any(resEvent, RDFS("label"), null);
 
-  // get event indicating domination
+  // Access Information
 
-  // const indicates = store.any(objectNode, COUNTERDATA("Indicates"), null);
-  // const power = store.match(indicates, null, COUNTERDATA("Power"));
-  // console.log(store.each(indicates, RDFS("label"), null));
-  // const keywordLabel = store.any(indicates, RDFS("label"), null).value;
+  // get colobj type node
+  const colObjTypes = store.each(objectNode, COUNTERDATA("HasType"), null);
+  console.log(colObjTypes);
 
-  // types of domination
-  // const domTypeLabel = getLabelForNodeAndPredicate(
-  //   objectNode,
-  //   COUNTERDATA("Indicates"),
-  // );
+  // get physical
+  const physicalObj = colObjTypes.find((objType) =>
+    store.any(objType, null, COUNTERDATA("PhysicalCollectionObject")),
+  );
+  const physHeldByLabel = getLabelForNodeAndPredicate(
+    physicalObj,
+    COUNTERDATA("HeldBy"),
+  );
+  const physAccessRights = getLabelForNodeAndPredicate(
+    physicalObj,
+    COUNTERDATA("Holds"),
+  );
+
+  // get digital
+  const digitalObj = colObjTypes.find((objType) =>
+    store.any(objType, null, COUNTERDATA("DigitalCollectionObject")),
+  );
+  const digiHeldByLabels = getMultipleLabelsForNodeAndPredicate(
+    digitalObj,
+    COUNTERDATA("HeldBy"),
+  );
+
+  const digiRights = store.each(digitalObj, COUNTERDATA("Holds"), null);
+
+  const accessRights = digiRights.find((right) =>
+    store.any(right, null, COUNTERDATA("AccessRights")),
+  );
+
+  const digiAccessRightsLabels = store
+    .each(accessRights, RDFS("label"), null)
+    .map((label) => label.value);
+
+  const usageRights = digiRights.find((right) =>
+    store.any(right, null, COUNTERDATA("UsageRights")),
+  );
+
+  const digiUsageRightsLabels = store
+    .each(usageRights, RDFS("label"), null)
+    .map((label) => label.value);
 
   return (
     <div>
@@ -320,13 +359,36 @@ export default async function ObjectPage({ params }) {
             <div>Interpersonal Domain</div>
           </section>
           <section className="cabox">
-            <div id="label3">
-              <h2>Access Information</h2>
-            </div>
-            <div>
-              Data fields with access information of the physical and digital
-              object
-            </div>
+            <h2>Access Information</h2>
+            &nbsp;
+            <h4>Access to Physical Item</h4>
+            &nbsp;
+            <p>
+              <b>Institution holding physical object: </b>
+              {physHeldByLabel}
+            </p>
+            &nbsp;
+            <p>
+              <b>Access rights of physical object: </b>
+              {physAccessRights}
+            </p>
+            &nbsp;
+            <h4>Access to Digital Item</h4>
+            &nbsp;
+            <p>
+              <b>Platforms or institutions holding digital object: </b>
+              {digiHeldByLabels}
+            </p>
+            &nbsp;
+            <p>
+              <b>Access rights of digital object: </b>
+              {digiAccessRightsLabels}
+            </p>
+            &nbsp;
+            <p>
+              <b>Usage rights of digital object: </b>
+              {digiUsageRightsLabels}
+            </p>
           </section>
         </div>
       </div>
