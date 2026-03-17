@@ -224,7 +224,7 @@ export default async function ObjectPage({ params }) {
     .map((label) => label.value);
 
   return (
-    <div>
+    <div className="mb-50">
       {/* Object page for object "{object}" in {collection} collection */}
       <div className="link">
         <div>Back to collection</div>
@@ -240,27 +240,33 @@ export default async function ObjectPage({ params }) {
         </div>
         <div className="flex-3 mr-8 max-h-[700px]">
           <div className="flex items-stretch justify-center flex-row cursor-pointer m-3 gap-10">
-            <div className="flex flex-col gap-2">
-              <div className="rounded-full border border-black-20 bg-[#2eb5a5] size-8 m-auto"></div>
-              <div>
-                <p className="plabel ml-3">Data intenventions</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="rounded-full border border-black-20 bg-[#ffcf56] size-8 m-auto"></div>
-              <div>
-                <p className="plabel ml-3">Power diffenrentails</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <div className="rounded-full border border-black-20 bg-[#d36c83] size-8 m-auto"></div>
-              <div>
-                <p className="plabel ml-3">Current Access Information</p>
-              </div>
-            </div>
+            <button className="flex flex-col gap-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover: border-black-50 scroll-smooth">
+              <a href="#dataInterventions">
+                <div className="rounded-full border border-black-20 bg-[#2eb5a5] size-8 m-auto"></div>
+                <div>
+                  <p className="plabel ml-3">Data intenventions</p>{" "}
+                </div>
+              </a>
+            </button>
+            <button className="flex flex-col gap-2 transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover: border-black-50">
+              <a href="#powerDifferentials">
+                <div className="rounded-full border border-black-20 bg-[#ffcf56] size-8 m-auto"></div>
+                <div>
+                  <p className="plabel ml-3">Power diffenrentails</p>
+                </div>
+              </a>
+            </button>
+            <button className="flex flex-col gap-2transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover: border-black-50">
+              <a href="#accessInfo">
+                <div className="rounded-full border border-black-20 bg-[#d36c83] size-8 m-auto"></div>
+                <div>
+                  <p className="plabel ml-3">Current Access Information</p>
+                </div>
+              </a>
+            </button>
           </div>
           <section className="odibox">
-            <div id="label1">
+            <div id="dataInterventions">
               <h2>Data Interventions</h2>
               &nbsp;
               <p>
@@ -314,7 +320,7 @@ export default async function ObjectPage({ params }) {
             </div>
           </section>
           <section className="pdbox">
-            <div id="label2">
+            <div id="powerDifferentials">
               <h2>Power Differentials</h2>
             </div>
             <div>
@@ -359,7 +365,9 @@ export default async function ObjectPage({ params }) {
             <div>Interpersonal Domain</div>
           </section>
           <section className="cabox">
-            <h2>Access Information</h2>
+            <div id="accessInfo">
+              <h2>Access Information</h2>
+            </div>
             &nbsp;
             <h4>Access to Physical Item</h4>
             &nbsp;
