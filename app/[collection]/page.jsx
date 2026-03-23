@@ -41,7 +41,7 @@ const pageContents = {
     objectBox: <div></div>,
   },
   Clive: {
-    infoBox: "clive was veeeeery ugly",
+    infoBox: "Info box about Clive",
   },
 };
 
